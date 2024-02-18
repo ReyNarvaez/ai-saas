@@ -1,57 +1,20 @@
 "use client";
 
+import { useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
-  MessageSquare,
-  ImageIcon,
-  VideoIcon,
-  Music,
-  Code,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-const tools = [
-  {
-    bgColor: "bg-violet-500/10",
-    color: "text-violet-500",
-    href: "/conversation",
-    icon: MessageSquare,
-    label: "Conversation",
-  },
-  {
-    bgColor: "bg-pink-700/10",
-    color: "text-pink-700",
-    href: "/image",
-    icon: ImageIcon,
-    label: "Image Generation",
-  },
-  {
-    bgColor: "bg-orange-700/10",
-    color: "text-orange-700",
-    href: "/video",
-    icon: VideoIcon,
-    label: "Video Generation",
-  },
-  {
-    bgColor: "bg-emerald-500/10",
-    color: "text-emerald-500",
-    href: "/music",
-    icon: Music,
-    label: "Music Generation",
-  },
-  {
-    bgColor: "bg-green-700/10",
-    color: "text-green-700",
-    href: "/code",
-    icon: Code,
-    label: "Code Generation",
-  },
-];
+import { routes } from "@/constants/routes";
 
 const DashboardPage = () => {
   const router = useRouter();
+
+  const tools = useMemo(() => {
+    return Object.values(routes).filter((route) => route.isTool);
+  }, []);
 
   return (
     <div>

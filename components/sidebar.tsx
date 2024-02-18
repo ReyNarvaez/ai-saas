@@ -4,65 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
-import {
-  Code,
-  ImageIcon,
-  LayoutDashboard,
-  MessageSquare,
-  Music,
-  Settings,
-  VideoIcon,
-} from "lucide-react";
 import { usePathname } from "next/navigation";
+import { routes } from "@/constants/routes";
 
 const montserrat = Montserrat({
   weight: "600",
   subsets: ["latin"],
 });
-
-const routes = [
-  {
-    color: "text-sky-500",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-    label: "Dashboard",
-  },
-  {
-    color: "text-violet-500",
-    href: "/conversation",
-    icon: MessageSquare,
-    label: "Conversation",
-  },
-  {
-    color: "text-pink-700",
-    href: "/image",
-    icon: ImageIcon,
-    label: "Image Generation",
-  },
-  {
-    color: "text-orange-700",
-    href: "/video",
-    icon: VideoIcon,
-    label: "Video Generation",
-  },
-  {
-    color: "text-emerald-500",
-    href: "/music",
-    icon: Music,
-    label: "Music Generation",
-  },
-  {
-    color: "text-green-700",
-    href: "/code",
-    icon: Code,
-    label: "Code Generation",
-  },
-  {
-    href: "/settings",
-    icon: Settings,
-    label: "Settings",
-  },
-];
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -79,7 +27,7 @@ const Sidebar = () => {
           </h1>
         </Link>
         <div className="space-y-1">
-          {routes.map((route) => (
+          {Object.values(routes).map((route) => (
             <Link
               href={route.href}
               key={route.href}
